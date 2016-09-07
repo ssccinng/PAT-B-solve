@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+  int main(){
+    long long int P = 0,A = 0,T = 0;
+    char n;
+    while ((n = getchar()) != '\n'){
+      if (n == 'P'){
+        P++;
+      }
+      if (n == 'A'){
+        A += P;
+      }
+      if (n == 'T'){
+        T += A;
+      }
+    }
+    printf("%d",T % 1000000007);
+    return 0;
+  }

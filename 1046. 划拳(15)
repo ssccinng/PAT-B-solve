@@ -1,0 +1,22 @@
+#include<stdio.h>
+  int main(){
+    int N;
+    scanf("%d",&N); 
+    int zqd = 0,zqy = 0;
+    int gr[4] = {0};
+    while (N--){
+      scanf("%d %d %d %d",&gr[0],&gr[1],&gr[2],&gr[3]);
+      int sum = gr[0] + gr[2];
+      if (gr[1] == sum){
+        if (gr[3] != sum){
+          zqy++;
+        }
+      }else{
+        if (gr[3] == sum){
+          zqd++;
+        }
+      }
+    }
+    printf("%d %d",zqd,zqy);
+    return 0;
+  }

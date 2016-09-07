@@ -1,0 +1,21 @@
+#include<stdio.h>
+  int main(){
+    int K1,K2,S1,S2,G1,G2;
+    scanf("%d.%d.%d %d.%d.%d",&G1,&S1,&K1,&G2,&S2,&K2);
+    int dk = K2 - K1,ds = S2 - S1,dg = G2 - G1;
+    if (dk < 0){
+      dk += 29;
+      ds--;
+    }
+    if (ds < 0){
+      ds += 17;
+      dg--;
+    }
+    if (dg < 0){
+      dg++;
+      ds = 16 - ds;
+      dk = 29 - dk;
+    }
+    printf("%d.%d.%d",dg,ds,dk);
+    return 0;
+  }

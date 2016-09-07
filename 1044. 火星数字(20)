@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+  int main(){
+    int N;
+    scanf("%d",&N);
+    getchar();
+    char* zqd[13] = {"tret","jan","feb","mar","apr","may","jun","jly","aug","sep","oct","nov","dec"};
+    char* gr[12] = {"tam","hel","maa","huh","tou","kes","hei","elo","syy","lok","mer","jou"};
+    char kirby[8] = {0};
+    char n;
+    while (N--){
+      char zqy[8] = {0};
+      int i = 0;
+      while ((n = getchar()) != '\n'){
+        kirby[i] = n;
+        i++;
+      }
+      kirby[i] = 0;
+      if (kirby[0] < 58){
+        int zjl = atoi(kirby) / 13,lly = atoi(kirby) % 13;
+        if (zjl == 0){
+          strcpy(zqy,zqd[lly]);
+        }else if (lly == 0){
+          strcpy(zqy,gr[zjl - 1]);
+        }else{
+          strcpy(zqy,gr[zjl - 1]);
+          zqy[3] = ' ';
+          strcat(zqy,zqd[lly]);
+        }
+      }else{
+        if (kirby[3] == ' '){
+          int sum = 0;
+          for (int j = 0;j < 12;j++){
+            if (strncmp(kirby,gr[j],3) == 0){
+              sum += (j + 1) * 13;
+              break;
+            }
+          }
+          char *p = &kirby[4];
+          for (int j = 0;j < 13;j++){
+            if (strncmp(p,zqd[j],3) == 0){
+              sum += j;
+              break;
+            }
+          }
+          sprintf(zqy,"%d",sum);
+        }else{
+          for (int j = 0;j < 13;j++){
+            if (strcmp(kirby,zqd[j]) == 0){
+              sprintf(zqy,"%d",j);
+              break;
+            }
+            if (strcmp(kirby,gr[j]) == 0){
+              sprintf(zqy,"%d",(j + 1) * 13);
+              break;
+            }
+          }
+        }
+      }
+      printf("%s\n",zqy);
+    }
+    return 0;
+  }

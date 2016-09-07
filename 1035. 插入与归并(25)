@@ -1,0 +1,147 @@
+#include<stdio.h>
+#include<stdlib.h>//强行打补丁过去的，，，，，
+	void Insertion_Sort_t(int N,int i,int I[N]);
+	void Insertion_Sort1(int N,int *p,int I[N]);
+	void Merge_Sort(int N,int gr,int M[N]);
+	void Merge_Sort_t(int a,int b,int zqy[a + b]);
+	int comp(const void*a,const void*b){
+		return *(int*)a-*(int*)b;
+	}
+		int main(){
+		int N;
+		int gr = 1;//暂时 
+		scanf("%d",&N);
+		int kirby[N],zqd[N];
+		int I[N];
+		int M[N];
+		int flag3 = 0;
+		for (int i = 0;i < N;i++){
+			scanf("%d",&kirby[i]);
+			I[i] = kirby[i];
+			M[i] = kirby[i];
+		}
+		for (int i = 0;i < N;i++){
+			scanf("%d",&zqd[i]);
+		}
+		int i = 0;
+		int *p = &i;
+		int cnt = 0;
+		int flag1,flag2; 
+		do {
+			cnt++;
+			flag1 = 1,flag2 = 1;
+			Insertion_Sort1(N,p,I);
+			if (I[*p] < I[*p + 1]){
+				(*p)++;
+			} 
+			for (int i = 0;i < N;i++){
+				if (I[i] != zqd[i]){
+					flag1 = 0;
+					break;
+				}
+			}
+			if (gr < 2 * N&&flag3 == 0){
+				Merge_Sort(N,gr,M);
+				gr *= 2;
+				for (int j = 0;j < N;j++){
+					if (M[j] != zqd[j]){
+						flag2 = 0;
+						break;
+					}
+				}
+			}
+//			if (flag2){
+//				printf("Merge Sort\n");
+//				Merge_Sort(N,gr,M);
+//				for (int j = 0;j < N;j++){
+//					if (j != N - 1){
+//						printf("%d ",M[j]);
+//					}else{
+//						printf("%d",M[j]);
+//					}
+//				}
+//				break;
+//			}
+			if (flag1){
+				printf("Insertion Sort\n");
+				Insertion_Sort1(N,p,I);
+				for (int j = 0;j < N;j++){
+					if (j != N - 1){
+						printf("%d ",I[j]);
+					}else{
+						printf("%d",I[j]);
+					}				
+				}
+				break;
+			}
+			if (cnt > 1000){
+				break;
+			}
+			if (flag2){
+				flag3 = 1;
+//				cnt++;
+//				printf("Merge Sort\n");
+//				Merge_Sort(N,gr,M);
+//				for (int j = 0;j < N;j++){
+//					if (j != N - 1){
+//						printf("%d ",M[j]);
+//					}else{
+//						printf("%d",M[j]);
+//					}
+//				}
+//				break;
+			}
+		}while (1);
+		if (flag3&&flag1 == 0){
+				printf("Merge Sort\n");
+				Merge_Sort(N,gr,M);
+				for (int j = 0;j < N;j++){
+					if (j != N - 1){
+						printf("%d ",M[j]);
+					}else{
+						printf("%d",M[j]);
+					}
+				}
+//				break;
+			}
+		return 0;
+	}
+	void Insertion_Sort1(int N,int *p,int I[N]){
+		int t;
+		if (*p < N - 1){
+			if (I[*p] >= I[*p + 1]){
+				t = I[*p];
+				I[*p] = I[*p + 1];
+				I[*p + 1] = t;
+				Insertion_Sort_t(N,*p - 1,I);
+				(*p)++;
+			}
+		}
+	}
+	void Insertion_Sort_t(int N,int i,int I[N]){
+		int t;
+		if (i >= 0){
+			if (I[i] >= I[i + 1]){
+				t = I[i];
+				I[i] = I[i + 1];
+				I[i + 1] = t;
+				Insertion_Sort_t(N,i - 1,I);
+			}
+		}
+	}
+	void Merge_Sort(int N,int gr,int M[N]){
+		int lly = N;
+		int *p;
+		while (2 * gr <= lly){
+			p = &M[N - lly];
+			Merge_Sort_t(gr,gr,p);
+			lly -= 2 * gr;
+		}
+		if (gr < lly){
+			p = &M[N - lly];
+			Merge_Sort_t(gr,lly % gr,p);
+		}
+	}
+	void Merge_Sort_t(int a,int b,int zqy[a + b]){
+		qsort(zqy,a + b,4,comp);
+	}

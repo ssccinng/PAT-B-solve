@@ -1,0 +1,18 @@
+#include<stdio.h>
+  int main(){
+    int cnt = 0;
+    int x;
+    scanf("%d",&x);
+    if(x <= 1000){
+      while(x != 1){
+        if(x % 2 == 0){
+          x /= 2;
+        }else{
+          x = (3*x + 1)/2;
+        }
+        cnt++;
+      }
+    }
+    printf("%d",cnt);
+    return 0;
+  }

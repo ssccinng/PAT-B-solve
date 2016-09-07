@@ -1,1 +1,1 @@
-# PAT B slove
+# PAT B solve

@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+  int main(){
+    int N;
+    int zqd[] = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
+    char gr[] = {'1','0','X','9','8','7','6','5','4','3','2'};
+    scanf("%d",&N);
+    int zqy = 1;
+    while (N--){
+      int flag = 1;
+      int sum = 0;
+      char kirby[19] = {0};
+      scanf("%s",kirby);
+      for (int i = 0;i < 17;i++){
+        if (kirby[i] < 58&&47 < kirby[i]){
+          sum += (kirby[i] - '0') * zqd[i];
+        }else{
+          flag = 0;
+          break;
+        }
+      }
+      if (gr[sum % 11] != kirby[17]){
+        flag = 0;
+      } 
+      if (flag == 0){
+        zqy = 0;
+        printf("%s\n",kirby);
+      }
+    }
+    if (zqy){
+      printf("All passed");
+    }
+    return 0;
+  } 

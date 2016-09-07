@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+  int comp(const void*a,const void*b){
+    return *(int*)b-*(int*)a;
+  }
+  int main(){
+    int N;
+//    FILE * fp = fopen("螺旋矩阵.txt","r"); 
+    scanf("%d",&N);
+    int zqd[N];
+    for (int i = 0;i < N;i++){
+      scanf("%d",&zqd[i]);
+    }
+    qsort(zqd,N,4,comp);
+    int m,n;
+    m = (int)sqrt(N);
+    if (fabs(pow(m,2) - N) < 0.000001){
+      n = m;
+    }else{
+      while (N % m){
+        m--;
+      }
+      n = N / m;
+    }
+    int m_max = 1,n_max = 1;
+//    printf("%d %d",m,n);
+    int zqy = 0,gr = 0;
+    int kirby[n][m];
+    for (int i = 0;i < N;){
+      while (gr < m - m_max){
+        kirby[zqy][gr] = zqd[i];
+        i++;
+        gr++;
+      }
+      while (zqy < n - n_max){
+        kirby[zqy][gr] = zqd[i];
+        i++;
+        zqy++;
+      }
+      while (gr > m_max - 1){
+        kirby[zqy][gr] = zqd[i];
+        i++;
+        gr--;
+      }
+      if (m == 2 * n_max - 1){
+        kirby[zqy][gr] = zqd[i];
+        break;
+      }
+      while (zqy > n_max - 1){
+        kirby[zqy][gr] = zqd[i];
+        i++;
+        zqy--;
+      }
+      gr++;
+      zqy++;
+      m_max++;
+      n_max++;
+    }
+    for (int i = 0;i < n;i++){
+      for (int j = 0;j < m;j++){
+        printf("%d",kirby[i][j]);
+        if (j != m - 1){
+          printf(" ");
+        }
+      }
+      printf("\n");
+    }
+    return 0;
+  }

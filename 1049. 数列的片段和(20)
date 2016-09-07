@@ -1,0 +1,15 @@
+#include<stdio.h>
+  int main(){
+    int N;
+    double sum = 0;
+    scanf("%d",&N);
+    double zqd;
+    for (int i = 0;i < N;i++){
+      scanf("%lf",&zqd);
+//      sum += (i + 1) * (N - i) * zqd;
+      sum += (i + 1) * zqd * (N - i);
+//      printf("%.2f %.2f\n",(i + 1) * (n - i) * zqd,(i + 1) * zqd * (n - i));
+    }
+    printf("%.2f\n",sum);
+    return 0;
+  }

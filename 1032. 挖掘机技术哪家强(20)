@@ -1,0 +1,19 @@
+#include<stdio.h>
+  int main(){
+    int N;
+    scanf("%d",&N);
+    int kirby[100000] = {0};
+    int zqd,gr;
+    int max = 0;
+    int zqy;
+    while (N--){
+      scanf("%d %d",&zqd,&gr);
+      kirby[zqd - 1] += gr;
+      if (kirby[zqd - 1] > max){
+        max = kirby[zqd - 1];
+        zqy = zqd;
+      }
+    }
+    printf("%d %d",zqy,max);
+    return 0;
+  }

@@ -1,0 +1,33 @@
+#include<stdio.h>
+  int main(){
+    int N,day_limit;
+    double I_limit;
+    int may = 0,must = 0;
+    scanf("%d %lf %d",&N,&I_limit,&day_limit);
+    int hodou = N;
+    while (N--){
+      int K;
+      scanf("%d",&K); 
+      int birthday = K / 2;
+      int a = K;
+      int zqd = 0;
+      while (K--){
+        double I;
+        scanf("%lf",&I);
+        if (I < I_limit){
+          zqd++;
+        }
+      }
+      if (zqd > birthday){
+        if (a > day_limit){
+          must++;  
+        }else{
+          may++;
+        }
+      }
+    }
+    double happy = may / (hodou * 1.0) * 100;
+    double to_you = must / (hodou * 1.0) * 100;
+    printf("%.1f%% %.1f%%",happy,to_you);
+    return 0;
+  }

@@ -1,0 +1,23 @@
+#include<stdio.h>
+  int main(){
+    int N;
+    scanf("%d",&N);
+    int kirby[101] = {0};
+    int zqd;
+    while (N--){
+      scanf("%d",&zqd);
+      kirby[zqd]++;
+    }
+    int gr;
+    int zqy;
+    scanf("%d",&gr);
+    while (gr--){
+      scanf("%d",&zqy);
+      if (gr != 0){
+        printf("%d ",kirby[zqy]);
+      }else{
+        printf("%d",kirby[zqy]);
+      }
+    }
+    return 0;
+  }

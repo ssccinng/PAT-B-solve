@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+  int main(){
+//    char kirby[1000] = {0};
+//    char zqd[1000] = {0};
+    int kirby_cnt = 0;
+    int zqd_cnt = 0;
+    char n;
+    int zqy[62] = {0};
+//    scanf("%s",kirby);
+//    scanf("%s",zqd);
+    while ((n = getchar()) != '\n'){
+      if (n < 58){
+        zqy[n - '0']++;
+      }else if (n < 91){
+        zqy[n - 55]++;
+      }else{
+        zqy[n - 61]++;
+      }
+      kirby_cnt++;//记得减一 
+    }
+    while ((n = getchar()) != '\n'){
+      if (n < 58){
+        zqy[n - '0']--;
+      }else if (n < 91){
+        zqy[n - 55]--;
+      }else{
+        zqy[n - 61]--;
+      }
+      zqd_cnt++;//记得减一 
+    }
+    int flag = 1;
+    int sum = 0;
+//    int sum2 = 0;
+    for (int i = 0;i < 62;i++){
+      if (zqy[i] < 0){
+        flag = 0;
+        sum -= zqy[i];
+      }
+//        sum2 += zqy[i];
+//      }
+    }
+    if (flag){
+      printf("Yes %d",kirby_cnt - zqd_cnt);
+    }else{
+      printf("No %d",sum);
+    }
+    return 0;
+  }

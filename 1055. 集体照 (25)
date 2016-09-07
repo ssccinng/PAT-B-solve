@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+  struct date{
+    char name[9];
+    int high;
+  };
+  int main(){
+    int N,K;
+    scanf("%d %d",&N,&K);
+    struct date zqd[N],temp;
+    int line_people = N / K;
+    int last_line = line_people + N % K;
+    char normal_q[K - 1][line_people][9];
+    char last_q[last_line][9];
+    for (int i = 0;i < N;i++){
+      scanf("%s %d",zqd[i].name,&zqd[i].high);
+    }
+    for (int i = 0;i < N / 2 + 1;i++){
+      for (int j = i;j < N - i - 1;j++){
+        if (zqd[j].high < zqd[j + 1].high||(zqd[j].high == zqd[j + 1].high&&strcmp(zqd[j].name,zqd[j + 1].name) > 0)){
+          temp =zqd[j];
+          zqd[j] = zqd[j + 1];
+          zqd[j + 1] = temp;
+        }
+        if (zqd[N - 1 - j].high > zqd[N - 2 - j].high||(zqd[N - 1 - j].high == zqd[N - 2 - j].high&&strcmp(zqd[N - 1 - j].name,zqd[N - 2 - j].name) < 0)){
+          temp = zqd[N - 1 - j];
+          zqd[N - 1 - j] = zqd[N - 2 - j];
+          zqd[N - 2 - j] = temp;
+        }
+      }
+    }
+//    for (int i = 0;i < N;i++){
+//        printf("%s ",zqd[i].name);
+//    }
+    int mid = last_line / 2;
+    int cnt = 0,zqy = 1;
+    int i = 0;
+    for (;i < last_line;i++){
+      strcpy(last_q[mid + zqy * cnt],zqd[i].name);
+      mid += zqy * cnt;
+      zqy *= -1;
+      cnt++;
+    }
+    int gr = 0;
+    while (i < N){
+      cnt = 0;
+      zqy = 1;
+      mid = line_people / 2;
+      for (int j = 0;j < line_people;j++){
+        strcpy(normal_q[gr][mid + zqy * cnt],zqd[i].name);
+        mid += zqy * cnt;
+        zqy *= -1;
+        cnt++;
+        i++;
+      }
+      gr++;
+    }
+    for (int i = 0;i < last_line;i++){
+      if (i != last_line - 1){
+        printf("%s ",last_q[i]);
+      }else{
+        printf("%s\n",last_q[i]);
+      }
+    }
+    for (int i = 0;i < K - 1;i++){
+      for (int j = 0;j < line_people;j++){
+        if (j != line_people - 1){
+          printf("%s ",normal_q[i][j]);
+        }else{
+          printf("%s\n",normal_q[i][j]);
+        }
+      }
+    }
+    return 0;
+  }

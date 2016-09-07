@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+  void kami(int len,char zqd[20],double* p,int* q);
+  int main(){
+    int N;
+    double sum = 0;
+    double* p = &sum;
+    int zqy = 0;
+    int* q = &zqy;
+    scanf("%d",&N);
+    char zqd[N][20];
+    for (int i = 0;i < N;i++){
+      scanf("%s",zqd[i]);
+      kami(strlen(zqd[i]),zqd[i],p,q);
+    }
+    double answer = sum / zqy;
+    if (zqy > 1){
+      printf("The average of %d numbers is %.2f\n",zqy,answer);
+    }else if (zqy == 1){
+      printf("The average of 1 number is %.2f\n",answer);
+    }else{
+      printf("The average of 0 numbers is Undefined\n");
+    }
+    return 0;
+  }
+  void kami(int len,char zqd[len],double* p,int* q){
+    int flag = 1;
+    if ((zqd[0] < 58&&zqd[0] > 47)||zqd[0] == 45){
+    }else{
+      flag = 0;
+    }
+    int idot_cnt = 0;
+    int gr = 20;
+    if (flag){
+      for (int i = 1;i < len;i++){
+        if (zqd[i] < 58&&zqd[i] > 45&&zqd[i] != 47){
+          if (zqd[i] == 46){
+            idot_cnt++;
+            gr = i;
+            if (idot_cnt == 2){
+              flag = 0;
+              break;
+            }
+          }
+        }else{
+          flag = 0;
+          break;
+        }
+      }
+      if (gr + 2 < len - 1){
+        flag = 0;
+      }
+      double zjl = atof(zqd);
+      if (flag&&zjl <= 1000&&zjl >= -1000){
+        *p += zjl;
+        *q += 1;
+      }else{
+        flag = 0;
+      }
+    }
+    if (flag == 0){
+      printf("ERROR: %s is not a legal number\n",zqd);
+    }
+  }

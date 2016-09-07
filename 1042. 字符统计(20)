@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<string.h>
+  int main(){
+    int kirby[26] = {0};
+    char zqd[] = {"abcdefghijklmnopqrstuvwxyz"}; 
+    char n;
+    while ((n = getchar()) != '\n'){
+      if (n <= 'z'&&'a' <= n){
+        kirby[n - 'a']++;
+      }
+      if (n <= 'Z'&&'A' <= n){
+        kirby[n - 'A']++;
+      }
+    }
+    int max = kirby[0],max_i = 0;
+    for (int i = 0;i < 26;i++){
+      if (kirby[i] > max){
+        max = kirby[i];
+        max_i = i;
+      }
+    }
+    printf("%c %d",zqd[max_i],max);
+    return 0;
+  }

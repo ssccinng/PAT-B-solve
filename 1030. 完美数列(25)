@@ -1,0 +1,27 @@
+    # include <stdio.h>
+    # include <stdlib.h>
+    int comp(const void*a,const void*b)
+    {
+    return *(int*)a-*(int*)b;
+    }
+    int main()
+    {
+        unsigned int a,b,max=1,min,i,j,n=0;
+        
+        scanf("%u %u",&a,&b);
+        unsigned int s[a];
+         
+        for(i=0;i<a;i++)
+        {  scanf("%u",&s[i]);
+         }
+        qsort(s,a,sizeof(unsigned int),comp);
+        for ( i = 0; i <a; i++) {
+            for ( j = i + max; j <a; j++) {
+                if (s[j] >s[i] * b) 
+                    break;
+                max++;
+            }
+    }
+    printf("%u",max);
+        return 0;
+    }

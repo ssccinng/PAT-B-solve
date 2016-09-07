@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+  int main(){
+    int N;
+    scanf("%d",&N);
+    int kirby[2][N];
+    for (int i = 0;i < N;i++){
+      kirby[1][i] = 0;
+    }
+    int max = -1;
+    for (int i = 0;i < N;i++){
+      scanf("%d",&kirby[0][i]);
+      if (kirby[0][i] > max){
+        max = kirby[0][i];
+        kirby[1][i] = 1;//将当前值发到字符串可更快，但没必要啦哈哈 
+      }
+    }
+    int min = 2000000000;
+    for (int i = N - 1;0 <= i;i--){
+      if (kirby[0][i] < min){
+        min = kirby[0][i];
+      }else{
+        kirby[1][i] = 0;
+      }
+    }
+    int cnt = 0;
+    for (int i = 0;i < N;i++){
+      if (kirby[1][i]){
+        cnt++;
+      }
+    }
+    printf("%d\n",cnt);
+    for (int i = 0;i < N;i++){
+      if (kirby[1][i]){
+        if (--cnt){
+          printf("%d ",kirby[0][i]);
+        }else{
+          printf("%d",kirby[0][i]);
+        }
+      }
+    }
+    if (cnt == 0){
+      printf("\n");
+    }
+    return 0;
+  }

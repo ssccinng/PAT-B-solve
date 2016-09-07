@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<string.h>
+  int main(){
+    int kirby[6] = {0};
+    char n;
+    while ((n = getchar()) != '\n'){
+      if (n == 'P'){
+        kirby[0]++;
+      }
+      if (n == 'A'){
+        kirby[1]++;
+      }
+      if (n == 'T'){
+        kirby[2]++;
+      }
+      if (n == 'e'){
+        kirby[3]++;
+      }
+      if (n == 's'){
+        kirby[4]++;
+      }
+      if (n == 't'){
+        kirby[5]++;
+      }
+    }
+    int flag = 1;
+    while (flag){
+      flag = 0;
+      if(kirby[0]){
+        printf("P");
+        kirby[0]--;
+        flag = 1;
+      }
+      if(kirby[1]){
+        printf("A");
+        kirby[1]--;
+        flag = 1;
+      }
+      if(kirby[2]){
+        printf("T");
+        kirby[2]--;
+        flag = 1;
+      }
+      if(kirby[3]){
+        printf("e");
+        kirby[3]--;
+        flag = 1;
+      }
+      if(kirby[4]){
+        printf("s");
+        kirby[4]--;
+        flag = 1;
+      }
+      if(kirby[5]){
+        printf("t");
+        kirby[5]--;
+        flag = 1;
+      }
+    }
+    return 0;
+  } 

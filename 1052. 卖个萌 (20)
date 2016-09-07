@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<string.h>
+//#include<stdlib.h>
+//#include<malloc.h>
+  int main(){
+    char *p = NULL,*q = NULL;
+    char kirby[3][10][7];
+    for (int i = 0;i < 3;i++){
+      for (int j = 0;j < 10;j++){
+        for (int k = 0;k < 7;k++){
+          kirby[i][j][k] = 0;
+        }
+      }
+    }
+    char zqd[3][61] = {{0},{0},{0}};
+    for (int i = 0;i < 3;i++){
+      int n = 0;
+      while ((zqd[i][n] = getchar()) != '\n'){
+        n++;
+      }
+      zqd[i][n] = 0;
+//      scanf("%s",zqd[i]);
+      int k = 0;
+      while (strchr(zqd[i],'[')){
+        p = strchr(zqd[i],'[') + 1;
+        q = strchr(zqd[i],']');
+        strncpy(kirby[i][k],p,q - p);
+        strcpy(zqd[i],q + 1);
+        k++;
+      }
+    }
+//    for (int i = 0;i < 3;i++){
+//      for (int j = 0;j < 10;j++){
+//      printf("%s ",kirby[i][j]);
+//      }
+//    printf("\n");
+//    }
+    int N;
+    scanf("%d",&N);
+    int gr[N][5];
+    for (int i = 0;i < N;i++){
+      for (int j = 0;j < 5;j++){
+        scanf("%d",&gr[i][j]);
+        gr[i][j]--;
+      }
+    }
+    for (int i = 0;i < N;i++){
+      int flag = 1;
+      char zqy[24] = {0};
+      for (int j = 0;j < 5;j++){
+        if (gr[i][j] > 9){
+          flag = 0;
+          break;
+        }
+        if (j == 0||j == 4){
+          if (kirby[0][gr[i][j]][0] == 0){
+            flag = 0;
+            break;
+          }
+          if (j == 4){
+            strcat(zqy,")");
+          }
+          strcat(zqy,kirby[0][gr[i][j]]);
+          if (j == 0){
+            strcat(zqy,"(");
+          }
+        }
+        if (j == 1||j == 3){
+          if (kirby[1][gr[i][j]][0] == 0){
+            flag = 0;
+            break;
+          }
+          strcat(zqy,kirby[1][gr[i][j]]);
+        }
+        if (j == 2){
+          if (kirby[2][gr[i][j]][0] == 0){
+            flag = 0;
+            break;
+          }
+          strcat(zqy,kirby[2][gr[i][j]]);
+        }
+      }
+      if (flag){
+        printf("%s\n",zqy);
+      }else{
+        printf("Are you kidding me? @\\/@\n");
+      }
+    }
+    return 0;
+  }

@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+	int main(){
+		char kirby[1000] = {'0',0};
+		char kirby1[1000] = {'0',0};
+		int zqd;
+		int gr;
+		scanf("%s %d",kirby,&zqd);
+		int len = strlen(kirby);
+		for (int i = 0;i < len;i++){
+			kirby[i] -= '0';
+			kirby1[i] = kirby[i] / zqd;
+			gr = kirby[i] % zqd;
+			if (i != len - 1){
+				kirby[i + 1] += 10 * gr;
+			}
+		}
+		int flag = 1;
+		for (int i = 0;i < len;i++){
+			if (kirby1[i] != 0||i == len - 1){
+				flag = 0;
+			}
+			if (flag){
+				continue;
+			}
+			printf("%d",kirby1[i]);
+		}
+		printf(" %d",gr);
+		return 0;
+	}

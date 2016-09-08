@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+	int main(){
+		char zqd[12] = {0},gr[12] = {0};
+		char A,B;
+		char zqy[12] = {'0',0},zjl[12] = {'0',0};
+		int lly,hl;
+		int cnt = 0;
+		scanf("%s %c %s %c",zqd,&A,gr,&B);
+		for (int i = 0;zqd[i] != 0;i++){
+			if (zqd[i] == A){
+				zqy[cnt] = A;
+				cnt++;
+			}
+		}
+		cnt = 0;
+		for (int i = 0;gr[i] != 0;i++){
+			if (gr[i] == B){
+				zjl[cnt] = B;
+				cnt++;
+			}
+		}
+		lly = atoi(zqy);
+//		printf("%d",lly); 
+		hl = atoi(zjl);
+//		printf("%d",hl); 
+		printf("%d",lly + hl);
+		return 0;
+	}

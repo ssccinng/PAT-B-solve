@@ -1,0 +1,83 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+	int main(){
+		char op1;
+		scanf("%c",&op1);
+		char kirby[100000] = {0};
+		char zqd[100000] = {0};
+		char n;
+		int i = 0;
+		while ((n = getchar()) != 'E'){
+			if (n != '.'){
+				kirby[i] = n;
+				i++;
+			}
+		}
+		char op2;
+		scanf("%c",&op2);
+		int gr;
+		scanf("%d",&gr);
+		if (op1 == '+'){
+			if (op2 == '+'){
+//				printf("%c\n",zqd[gr + 1]);
+//				printf("%c\n",zqd[1]);
+				strncat(zqd,kirby,gr + 1);
+				zqd[gr + 1] = '.';
+				char *p =&zqd[gr + 2];
+				char *q =&kirby[gr + 1];
+				strcat(p,q);
+//				printf("%c\n",zqd[gr + 1]);
+//				printf("%s\n",q);
+//				printf("%s\n",q);
+				int t = gr;
+				if (zqd[gr] == 0){
+					while (zqd[gr] == 0){
+						zqd[gr] = '0';
+						gr--;
+					}
+				}
+				if (zqd[t + 2] == 0){
+					zqd[t + 1] = 0;
+				}
+			}else{
+				zqd[0] = '0';
+				zqd[1] = '.';
+				for (int j = 2;j < gr + 1;j++){
+					zqd[j] = '0';
+				}
+				strcat(zqd,kirby);
+			}
+		}else{
+			zqd[0] = '-';
+			if (op2 == '+'){		
+				strncat(zqd,kirby,gr + 1);
+				zqd[gr + 2] = '.';
+//				printf("%c\n",zqd[gr + 2]);
+				char *p =&zqd[gr + 3];
+				char *q =&kirby[gr + 1];
+				strcat(p,q);
+//				printf("%c\n",zqd[gr + 3]);
+				int t = gr;
+				if (zqd[gr + 1] == 0){
+					while (zqd[gr + 1] == 0){
+						zqd[gr + 1] = '0';
+						gr--;
+					}
+				}
+				if (zqd[t + 3] == 0){
+					zqd[t + 2] = 0;
+				}
+			}else{
+				zqd[1] = '0';
+				zqd[2] = '.';
+				for (int j = 3;j < gr + 2;j++){
+					zqd[j] = '0';
+				}
+				strcat(zqd,kirby);
+			}
+		}
+		printf("%s",zqd);
+		return 0;
+	}

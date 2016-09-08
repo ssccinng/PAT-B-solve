@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+	struct zqd{
+		char a1[6];
+		int gr;
+		char a2[6];
+	};
+	int main(){
+		char head[6] = {0};
+		int N;
+		int K;
+//		FILE * fp = fopen("反转链表.txt","r");
+		scanf("%s %d %d",head,&N,&K);
+//		fscanf(fp,"%s %d %d",head,&N,&K);
+		struct zqd temp,zqy[N],kirby[N];
+		int flag = 0;
+		for (int i = 0;i < N;i++){
+			scanf("%s %d %s",kirby[i].a1,&kirby[i].gr,kirby[i].a2);
+//			fscanf(fp,"%s %d %s",kirby[i].a1,&kirby[i].gr,kirby[i].a2);
+			if (strcmp(kirby[i].a1,head) == 0){
+				temp = kirby[i];
+				kirby[i] = kirby[0];
+				kirby[0] = temp;
+				flag = 1;//用于标记有没有这个 
+			}
+		}
+//		for (int i = 0;i < N;i++){
+//			printf("%s %d %s\n",kirby[i].a1,kirby[i].gr,kirby[i].a2);
+//		}
+		if (flag){
+			int cnt;
+			for (cnt = 1;cnt < N;cnt++){
+				int flag1 = 1;
+				for (int i = cnt;i < N;i++){
+					if (strcmp(kirby[i].a1,kirby[cnt - 1].a2) == 0){
+						flag1 = 0;
+						temp = kirby[i];
+						kirby[i] = kirby[cnt];
+						kirby[cnt] = temp;
+						break;
+					}			
+				}
+				if (flag1){
+					break;
+				}
+			}
+	//		for (int i = 0;i < cnt;i++){
+	//			printf("%s %d %s\n",kirby[i].a1,kirby[i].gr,kirby[i].a2);
+	//		}
+	//		int zjl = cnt / K;
+			int hl = cnt % K;
+			for (int i = 0;i < cnt - K + 1;i += K){//段错误发生点 
+				for (int j = i + K - 1;i <= j;j--){
+					zqy[2 * i + K - 1 - j] = kirby[j];
+				}
+			}
+			for (int i = cnt - 1;i > cnt - 1 - hl;i--){
+				zqy[i] = kirby[i];
+			}
+			zqy[cnt - 1].a2[0] = '-';
+			zqy[cnt - 1].a2[1] = '1';
+			zqy[cnt - 1].a2[2] = 0;
+			for (int i = 0;i < cnt;i++){
+				if (i != cnt - 1){
+					strcpy(zqy[i].a2,zqy[i + 1].a1);
+				}
+				printf("%s %d %s\n",zqy[i].a1,zqy[i].gr,zqy[i].a2);
+			}
+		}
+		return 0;
+	}

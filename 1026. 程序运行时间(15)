@@ -1,0 +1,18 @@
+#include<stdio.h>
+#define CLK_TCK 100
+//#include<time.h>
+  int main(){
+    int C1,C2;
+    scanf("%d %d",&C1,&C2);
+    int sec = (C2 - C1);
+    if (sec % 100 >= 50){
+      sec += 100;
+    }
+    sec /= 100;
+    int h =  sec / 3600;
+    sec %= 3600;
+    int m = sec / 60;
+    int s = sec % 60;
+    printf("%02d:%02d:%02d",h,m,s);
+    return 0;
+  }

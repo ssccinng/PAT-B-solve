@@ -1,0 +1,14 @@
+#include<stdio.h>//本来想想递归会方便些，，结果不熟，还是弄了好久。。
+	void zqy(int zqd,int D){
+		if (zqd >= D){
+			zqy(zqd / D,D);
+		}
+		printf("%d",zqd % D);
+	}
+	int main(){
+		int A,B,D;
+		scanf("%d %d %d",&A,&B,&D);
+		int zqd = A + B;
+		zqy(zqd,D);
+		return 0;
+	} 

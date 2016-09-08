@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+	int main(){
+		char kirby[40] = {0};
+		char zqd[81] = {0};
+		char gr[81] = {0};
+		scanf("%s",zqd);
+		scanf("%s",gr);
+		for (int i = 0;i < 81;i++){
+			if('a' <= zqd[i]&&zqd[i] <= 'z'){
+				zqd[i] -= 32;
+			}
+			if('a' <= gr[i]&&gr[i] <= 'z'){
+				gr[i] -= 32;
+			}
+		}
+		int j = 0;
+		int t = 0;
+		for (int i = 0;zqd[i] != 0;i++){
+			if (zqd[i] != gr[j]){
+				if (strchr(kirby,zqd[i]) == NULL){
+					kirby[t] = zqd[i];
+					t++;
+				}
+			}else{
+				j++;
+			}
+		}
+		printf("%s",kirby);
+		return 0;
+	}

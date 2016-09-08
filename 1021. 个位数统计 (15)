@@ -1,0 +1,14 @@
+#include<stdio.h>
+	int main(){
+		int kirby[10] = {0};
+		char n;
+		while ((n = getchar()) != '\n'){
+			kirby[(int)(n - '0')]++;
+		}
+		for (int i = 0;i < 10;i++){
+			if (kirby[i] != 0){
+				printf("%d:%d\n",i,kirby[i]);
+			}
+		}
+		return 0;
+	}

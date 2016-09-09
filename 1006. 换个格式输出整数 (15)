@@ -1,0 +1,18 @@
+#include<stdio.h>
+	int main(){
+		int N;
+		scanf("%d",&N);
+		int zqd = N / 100;
+		int gr = N % 100 / 10;
+		int zqy = N % 10;
+		while (zqd--){
+			printf("B");
+		}
+		while (gr--){
+			printf("S");
+		}
+		for (int i = 1;i <= zqy;i++){
+			printf("%d",i);
+		}
+		return 0;
+	}

@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+	struct zqd{
+		double kucun;
+		double zong;
+		double jiazhi;
+	};
+	int main(){
+		int N;
+		double worth = 0,V;
+		scanf("%d %lf",&N,&V);
+		double sum = 0;
+		double sum2 = 0; 
+		struct zqd zqy[N],temp;//记得库存小于的情况 
+		for (int i = 0;i < N;i++){
+			scanf("%lf",&zqy[i].kucun);
+//			zqy[i].jiazhi = zqy[i].zong * 1.0 / zqy[i].kucun;
+			sum += zqy[i].kucun;
+//			sum2 += zqy[i].zong; 
+		}
+		for (int i = 0;i < N;i++){
+			scanf("%lf",&zqy[i].zong);
+			zqy[i].jiazhi = zqy[i].zong * 1.0 / zqy[i].kucun;
+//			sum += zqy[i].kucun;
+			sum2 += zqy[i].zong; 
+		}
+		if (sum <= V){
+			printf("%.2f",sum2);
+		}else{
+			int j = 0;
+			do{
+				for (int i = N - 1;i > j;i--){
+					if (zqy[i].jiazhi > zqy[i - 1].jiazhi){
+						temp = zqy[i];
+						zqy[i] = zqy[i - 1];
+						zqy[i - 1] = temp;
+					}
+				}
+				if (V >= zqy[j].kucun){
+					worth += zqy[j].zong;
+					V -= zqy[j].kucun;
+				}else{
+					break;
+				}
+				j++;
+			}while (1);
+			worth += zqy[j].jiazhi * V;
+			printf("%.2f",worth);
+		}
+		return 0;
+	}

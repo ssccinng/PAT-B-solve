@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>//列表大法！
+	char change(char a){
+		char c;
+		if (a == 'B'){
+			c = 0;
+		}
+		if (a == 'C'){
+			c = 1;
+		}
+		if (a == 'J'){
+			c = 2;
+		}
+		return c;
+	}
+	int max(int a,int b,int c){
+		int zjl;
+		if (a >= b){
+			if (a >= c){
+				zjl = 0;
+			}else{
+				zjl = 2;
+			}
+		}else{
+			if (b >= c){
+				zjl = 1;
+			}else{
+				zjl = 2;
+			}
+		}
+		return zjl; 
+	}
+	int main(){
+//		FILE * fp = fopen("石头剪刀布.txt","r");
+		int kirby[3][3] ={{0},{0}};
+		int N;
+		scanf("%d",&N);
+		int t = N;
+		char a,b;
+		char lly[] = "BCJ";
+		while (t--){
+			scanf(" %c %c",&a,&b);
+			a = change(a);
+			b = change(b);
+			kirby[(int)a][(int)b]++;
+		}
+		int zqd = kirby[0][1] + kirby[1][2] + kirby[2][0];
+		int gr = kirby[0][0] + kirby[1][1] + kirby[2][2];
+		int zqy = N - zqd - gr;
+		printf("%d %d %d\n",zqd,gr,zqy);
+		printf("%d %d %d\n",zqy,gr,zqd);
+		int max1,max2;
+		max1 = max(kirby[0][1],kirby[1][2],kirby[2][0]);
+		max2 = max(kirby[1][0],kirby[2][1],kirby[0][2]);
+		printf("%c %c",lly[max1],lly[max2]);
+		return 0;
+	} 

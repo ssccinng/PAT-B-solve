@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<string.h>
+	int main(){
+		int N;
+		scanf("%d",&N);
+		while (N--){
+			int cntp = 0;
+			int cntT = 0;
+			char kirby[102] = {0};
+			scanf("%s",kirby);
+			int flag = 0;
+			int flag1 = 1;
+			int len = strlen(kirby);
+			for (int i = 0;i < len;i++){
+				if (strchr("PAT",kirby[i])){
+					if (kirby[i] == 'P'){
+						cntp++;
+					}
+					if (kirby[i] == 'T'){
+						cntT++;
+					}
+					if (cntT == 2||cntp == 2){
+						flag1 = 0;
+						break;
+					}
+				}else{
+					flag1 = 0;
+					break;
+				}
+			}
+			if (len % 2&&flag1){
+				if (kirby[len / 2 - 1] == 'P'&&kirby[len / 2 + 1] == 'T'){
+					flag = 1;
+				}
+			}
+			char *p,*t,*q,*o;
+			p = strchr(kirby,'P');
+			t = strchr(kirby,'T');
+			q = &kirby[len - 1];
+			o = &kirby[0];
+			if (t - p > 1&&flag1){
+				if (p - o == (q - t) / (t - p - 1) ){
+					flag = 1;
+				}
+			}
+//			if (p == o&&t == q&&t - p != 1&&flag1){
+//				flag = 1;
+//			}
+			if (flag){
+				printf("YES\n");
+			}else{
+				printf("NO\n");
+			}
+		}
+		return 0;
+	}

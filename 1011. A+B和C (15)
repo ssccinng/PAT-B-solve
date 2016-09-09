@@ -1,0 +1,31 @@
+#include<stdio.h>
+    int main(){
+        int T;
+//        int ca[T - 1] = {0};
+        scanf("%d",&T);
+        if(T <= 10){
+            int ca[10] = {0};
+            int cnt = T;
+            long int a,b,c;
+            int i = 0;
+            while(cnt--){
+                scanf("%ld %ld %ld",&a,&b,&c);
+                if(a + b > c){
+                    ca[i] = 1;
+                }else{
+                    ca[i] = 0;
+                }
+                i++;
+            }
+            i = 0;
+            while(i < T){
+                printf("Case #%d: ",i + 1);
+                if(ca[i]){
+                    printf("true\n");
+                }else{
+                    printf("false\n");
+                }i++;
+            }
+        }
+        return 0;
+    }

@@ -1,0 +1,21 @@
+#include<stdio.h>
+	int main(){
+		int N,K;
+		scanf("%d %d",&N,&K);
+		K %= N;
+		int kirby[N];
+		for (int i = 0;i < N;i++){
+			scanf("%d",&kirby[i]);
+			if (i >= N - K){
+				printf("%d ",kirby[i]);
+			}
+		}
+		for (int i = 0;i < N - K;i++){
+			if (i != N - K - 1){
+				printf("%d ",kirby[i]);
+			}else{
+				printf("%d",kirby[i]);
+			}
+		}
+		return 0;
+	}

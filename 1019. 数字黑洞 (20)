@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+	int comp(const void*a,const void*b){
+		return *(int*)b-*(int*)a;
+	}
+	int main(){
+		int zqd;
+		int o = 0,n = 0;
+		int kirby[4] = {0};
+		for (int i = 0;i < 4;i++){
+			scanf("%1d",&kirby[i]);
+		}
+//		zqd = kirby[3] + kirby[2] * 10 + kirby[1] * 100 + kirby[0] * 1000;
+		zqd = 0;
+		qsort(kirby,4,4,comp);
+		for (int i = 0;i < 4;i++){
+			o += pow(10,i) * kirby[i];
+			n += pow(10,i) * kirby[3 - i];
+		}
+		if (o == n){
+			printf("%04d - %04d = 0000\n",n,o);
+		}else{
+			while(zqd != 6174){
+				zqd = n - o;
+				printf("%04d - %04d = %04d\n",n,o,zqd);
+				kirby[0] = zqd % 10;
+				kirby[1] = zqd % 100 / 10;
+				kirby[2] = zqd % 1000 / 100;
+				kirby[3] = zqd / 1000;
+				n = 0;
+				o = 0;
+				qsort(kirby,4,4,comp);
+				for (int i = 0;i < 4;i++){
+					o += pow(10,i) * kirby[i];
+					n += pow(10,i) * kirby[3 - i];
+				}
+			}
+		}
+		return 0;
+	}

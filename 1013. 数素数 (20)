@@ -16,7 +16,7 @@
 		int i = 3;
 		while (1){
 			isprime = 1;
-			for (int j = 1;j < cnt / 2;j++){//这里不太清楚到底是根号快还是这样快，，，，，
+			for (int j = 1;j < cnt / 2;j++){//这里不太清楚到底是根号快还是这样快，，，，，//for (int j = 0;kirby[j] < sqrt(i) + 1&&j < cnt;j++){
 				if (i % kirby[j] == 0){
 					isprime = 0;
 					break;

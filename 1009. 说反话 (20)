@@ -1,0 +1,21 @@
+#include<stdio.h>
+	int main(){
+		char kirby[82][82];
+		char n;
+		int i = 0;
+		while (n != '\n'){
+			scanf("%s",kirby[i]);
+			i++;
+			n = getchar();
+		}
+		i--;
+		while (i + 1){
+			if (i != 0){
+				printf("%s ",kirby[i]);
+			}else{
+				printf("%s",kirby[i]);
+			}
+			i--;
+		}
+		return 0;
+	}

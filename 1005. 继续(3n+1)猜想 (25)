@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+	int comp(const void*a,const void*b){
+		return *(int*)b-*(int*)a;
+	}
+	int main(){
+		int N;
+		scanf("%d",&N);
+		int kirby[3][N];
+		for (int i = 0;i < N;i++){
+			scanf("%d",&kirby[0][i]);		
+			kirby[1][i] = 1;
+		}
+		qsort(kirby[0],N,4,comp);
+		for (int i = 0; i < N;i++){
+			kirby[2][i] = kirby[0][i];
+		}
+		for (int i = 0;i < N;i++){
+			if (kirby[1][i] == 0){
+				continue;
+			}
+			while (kirby[0][i] != 1){
+				if (kirby[0][i] % 2){
+					kirby[0][i] = (3 * kirby[0][i] + 1) / 2;
+				}else{
+					kirby[0][i] /= 2;
+				}
+				for (int j = 0;j < N;j++){
+					if (kirby[1][j]&&kirby[0][i] == kirby[2][j]){
+						kirby[1][j] = 0;
+					}
+				}
+			}
+		}
+		int cnt = 0;
+		for (int i = 0;i < N;i++){
+			if (kirby[1][i]){
+				cnt++;
+			}
+		}
+		for (int i = 0;i < N;i++){
+			if (kirby[1][i]){
+				if (cnt-- - 1){
+					printf("%d ",kirby[2][i]);
+				}else{
+					printf("%d",kirby[2][i]);
+				}
+			} 
+		}
+		return 0;
+	}

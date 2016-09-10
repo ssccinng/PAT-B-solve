@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+	typedef struct zqd{
+		int zhu;
+		int de;
+		int cai;
+		int dc;
+	}student;
+	int cmpdec(const void *a, const void *b){
+		student *c = (student*)a;
+		student *d = (student *)b;
+		int t1 = c->de + c->cai;
+		int t2 = d->de + d->cai;
+		if (t1 != t2)
+			return (t2 > t1 ? 1 : -1);
+		else if (c->de != d->de)
+			return (d->de - c->de);
+		else
+			return (c->zhu - d->zhu);
+	}
+	int main(){
+//		FILE * fp = fopen("德才论.txt","r"); 
+		int N,L,H;
+//		fscanf(fp,"%d %d %d",&N,&L,&H);
+		scanf("%d %d %d",&N,&L,&H);
+		int t = N;
+		student kirby[2][2][N],zqy,temp;
+		int cnt1 = 0,cnt2 = 0,cnt3 = 0,cnt4 = 0;
+		while (t--){
+			scanf("%d %d %d",&zqy.zhu,&zqy.de,&zqy.cai);
+//			fscanf(fp,"%d %d %d",&zqy.zhu,&zqy.de,&zqy.cai);
+			zqy.dc = zqy.de + zqy.cai;
+			if (zqy.de >= H&&zqy.cai >= H){
+				kirby[0][0][cnt1] = zqy;
+				cnt1++;
+			}else if (zqy.de >= H&&zqy.cai >= L){
+				kirby[0][1][cnt2] = zqy;
+				cnt2++;
+			}else if (zqy.de >= L&&zqy.cai >= L&&zqy.de >= zqy.cai){
+				kirby[1][0][cnt3] = zqy;
+				cnt3++;
+			}else if (zqy.de >= L&&zqy.cai >= L){
+				kirby[1][1][cnt4] = zqy;
+				cnt4++;
+			}
+		}
+		qsort(kirby[0][0],cnt1, sizeof(kirby[0][0][0]), cmpdec);
+		qsort(kirby[0][1], cnt2, sizeof(kirby[0][1][0]), cmpdec);
+		qsort(kirby[1][0], cnt3, sizeof(kirby[1][0][0]), cmpdec);
+		qsort(kirby[1][1], cnt4, sizeof(kirby[0][4][0]), cmpdec);
+		printf("%d\n",cnt1 + cnt2 + cnt3 + cnt4);
+		for (int i = 0;i < cnt1;i++){
+			printf("%d %d %d\n",kirby[0][0][i].zhu,kirby[0][0][i].de,kirby[0][0][i].cai);
+		}
+		for (int i = 0;i < cnt2;i++){
+			printf("%d %d %d\n",kirby[0][1][i].zhu,kirby[0][1][i].de,kirby[0][1][i].cai);
+		}
+		for (int i = 0;i < cnt3;i++){
+			printf("%d %d %d\n",kirby[1][0][i].zhu,kirby[1][0][i].de,kirby[1][0][i].cai);
+		}
+		for (int i = 0;i < cnt4;i++){
+			printf("%d %d %d\n",kirby[1][1][i].zhu,kirby[1][1][i].de,kirby[1][1][i].cai);
+		}
+		return 0;
+	}

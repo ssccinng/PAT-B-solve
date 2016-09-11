@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int comp(const void * a,const void * b){
+  return *(int*)b - *(int*)a;
+} 
+  int main(){
+    int N;
+    scanf("%d",&N);
+    int kirby[N];
+    for (int i = 0;i < N;i++){
+      scanf("%d",&kirby[i]);
+    }
+    int maxa = 0;
+    int a = 0;
+    int o = 1;
+    qsort(kirby,N,sizeof(int),comp);
+    for (int i = 0;i < N;i++){
+      if (kirby[i] > o){
+        a++;
+        o++;
+      }else{
+        o = 1;
+        a = 0;  
+      }
+      if  (a > maxa){
+        maxa = a;
+      }
+    }
+    printf("%d",maxa);
+    return 0;
+  }

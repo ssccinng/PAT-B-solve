@@ -1,1 +1,22 @@
-
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+  int main(){
+    int N;
+    int zqd;
+    int sum = 0;
+    scanf("%d",&N);
+    int t = N,o = N;
+//    if (N == 1){
+//      scanf("%d",&zqd);
+//      printf("%d",zqd);
+//      return 0;
+//    }
+    while (N--){
+      scanf("%d",&zqd);
+      sum += zqd * 11 * (t - 1);
+    }
+    printf("%d",sum);
+    return 0;
+  }

@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<math.h>
+	int isprime(int zqd);
+	int main(){
+		int N,M;
+		scanf("%d",&N);
+		int list[N];
+		for (int i = 0;i < N;i++){
+			scanf("%d",&list[i]);
+		}
+		scanf("%d",&M);
+		int kirby[M];
+		int cnt = 1;
+		for (int i = 0;i < M;i++){
+			scanf("%d",&kirby[i]);
+			int flag = 1;
+			for (int j = 0;j < i;j++){
+				if (kirby[i] == kirby[j]){			
+					flag = 0;
+					break;
+				}
+			}
+			if (list[0] == kirby[i]){
+				if (cnt){
+					printf("%04d: Mystery Award\n",kirby[i]);
+					cnt = 0;
+				}else{
+					printf("%04d: Checked\n",kirby[i]);
+					continue;
+				}
+			}else{
+				for (int k = 1;k < N;k++){
+					if (list[k] == kirby[i]){
+						if (isprime(k + 1)&&flag){
+							printf("%04d: Minion\n",kirby[i]);
+							break;
+						}else if (flag){
+							printf("%04d: Chocolate\n",kirby[i]);
+							break;
+						}else{
+							printf("%04d: Checked\n",kirby[i]);
+							break;
+						}
+					}
+					if (k == N - 1){
+						printf("%04d: Are you kidding?\n",kirby[i]);
+						break;
+					}
+				}
+			}
+		}
+		return 0;
+	}
+	int isprime(int zqd){
+		if (zqd == 2||zqd == 3){
+			return 1;
+		}
+		int flag = 1;
+		for (int i = 2;i < sqrt(zqd) + 1;i++){
+			if (zqd % i == 0){
+				flag = 0;
+				break;
+			}
+		}
+		return flag;
+	}

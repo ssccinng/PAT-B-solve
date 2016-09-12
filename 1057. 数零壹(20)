@@ -1,0 +1,29 @@
+#include<stdio.h>
+  int main(){
+    int cnt0 = 0,cnt1 = 0;
+    int sum = 0;
+    char n;
+    while ((n = getchar()) != '\n'){
+      if ('a' <= n&&n <= 'z'){
+        sum += n - 'a' + 1;
+      }
+      if ('A' <= n&&n <= 'Z'){
+        sum += n - 'A' + 1;
+      }
+    }
+    if (sum == 0){
+      printf("0 0");
+      return 0;
+    }
+    while (sum > 1){
+      if (sum % 2){
+        cnt1++;
+      }else{
+        cnt0++;
+      }
+      sum /= 2;
+    }
+            cnt1++;
+    printf("%d %d",cnt0,cnt1);
+    return 0;
+  }

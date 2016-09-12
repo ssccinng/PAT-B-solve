@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+	typedef struct xuanze{
+		int soren;
+		int geshu;
+		char gr[13];
+		int cuowu;
+	}zqd;
+	int main(){
+//		FILE * fp = fopen("sbmj.txt","r");
+		int N,M;
+		scanf("%d %d",&N,&M);
+//		fscanf(fp,"%d %d",&N,&M);
+		zqd kirby[M];
+		for (int i = 0;i < M;i++){
+			kirby[i].cuowu = 0;
+			scanf("%d %d",&kirby[i].soren,&kirby[i].geshu);
+//			fscanf(fp,"%d %d ",&kirby[i].soren,&kirby[i].geshu);
+			char n;
+			int z = 0;
+			while ((n = getchar()) != '\n'){
+				if (n != ' '){
+					kirby[i].gr[z] = n;
+					z++;
+				}		
+			}
+			kirby[i].gr[z] = 0;
+//			printf("%s\n",kirby[i].gr);
+		}
+		for (int i = 0;i < N;i++){
+			int grade = 0;
+			char daan[13] = {0};
+			for (int j = 0;j < M;j++){
+//				scanf("(%s",daan);
+				char n;
+				int z = 0;
+				while ((n = getchar()) != ')'){
+					if (n != '('&&n != ' '&&n != '\n'){
+						daan[z] = n;
+						z++;
+					}	
+				}
+				daan[z] = 0;
+//				printf("%s",daan);
+//				daan[strlen(daan) - 1] = 0;
+//				printf("%s\n",daan);
+				if (strcmp(kirby[j].gr,daan) == 0){
+					grade += kirby[j].soren;
+				}else{
+					kirby[j].cuowu++;
+				}
+			}
+			printf("%d\n",grade);
+		}
+		int max = 0;
+		for (int i = 0;i < M;i++){
+			if (kirby[i].cuowu > max){
+				max = kirby[i].cuowu;
+			}
+		}
+		if (max == 0){
+			printf("Too simple");
+		}else{
+			printf("%d",max);
+			for (int i = 0;i < M;i++){
+				if (max == kirby[i].cuowu){
+					printf(" %d",i + 1);
+				}
+			}
+		}
+		return 0;
+	}

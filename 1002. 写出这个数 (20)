@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<string.h>
+	void zqd(int sum){
+		int p;
+		char * kirby[10] = {"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
+		p = sum % 10;
+		if (sum > 9){
+			sum /= 10;
+			zqd(sum);
+			printf(" ");
+		}
+		printf("%s",kirby[p]);
+	}
+	int main(){
+		int sum = 0;
+		char n;
+		while ((n = getchar()) != '\n'){
+			sum += n - '0';
+		}
+//		printf("%d",sum);
+		zqd(sum);
+		return 0;
+	}

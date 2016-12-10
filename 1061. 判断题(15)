@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main(){
+	int N, M;
+	scanf("%d %d", &N, &M);
+	int s[M];
+	for (int i = 0; i < M; ++i){
+		scanf("%d", &s[i]);
+	}
+	int a[M];
+	for (int i = 0; i < M; ++i){
+		scanf("%d", &a[i]);
+	}
+	int j;
+	while (N--){
+		int sum = 0;
+		for (int i = 0; i < M; ++i){
+			scanf("%d", &j);
+			if (j == a[i]) sum += s[i];
+		}
+		printf("%d\n",sum);
+	}
+	return 0;
+} 

@@ -1,27 +1,51 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-int main(int argc, char * argv[]) { 
-	char temp[32] = {0};
-	int T;
-	scanf("%s %d", temp, &T);
-	getchar();
-	char pat[50] = {0};
-	while (T--) {
-		gets(pat);
-		if (pat[1] == 0 && pat[0] == '#') {
-			break;
-		}
-		else {
-			if (!strcmp(temp, pat)) {
-				printf("Welcome in\n");
-				return 0;
-			}
-			else {
-				printf("Wrong password: %s\n", pat);
-			}
+int temp[1 << 24];
+int graph[1010][1010];
+int isok(int x, int y, int TOL) {
+	if (abs(graph[x - 1][y - 1] - graph[x][y]) <= TOL) return 0;
+	if (abs(graph[x][y - 1] - graph[x][y]) <= TOL) return 0;
+	if (abs(graph[x - 1][y] - graph[x][y]) <= TOL) return 0;
+	if (abs(graph[x + 1][y + 1] - graph[x][y]) <= TOL) return 0;
+	if (abs(graph[x + 1][y] - graph[x][y]) <= TOL) return 0;
+	if (abs(graph[x][y + 1] - graph[x][y]) <= TOL) return 0;
+	if (abs(graph[x + 1][y - 1] - graph[x][y]) <= TOL) return 0;
+	if (abs(graph[x - 1][y + 1] - graph[x][y]) <= TOL) return 0;
+	return 1;
+}
+
+int main(){
+	int N, M, TOL;
+	scanf("%d %d %d", &M, &N, &TOL);
+	for (int i = 1; i <= N; ++i) {
+		for (int j = 1; j <= M; ++j) {
+			scanf("%d", &graph[i][j]);
 		}
 	}
-	if (T == -1) printf("Account locked\n");
+	for (int i = 0; i <= M + 1; ++i) graph[0][i] = graph[N + 1][i] = -0x7ffffff;
+	for (int i = 0; i <= N + 1; ++i) graph[i][0] = graph[i][M + 1] = -0x7ffffff;
+	for (int i = 1; i <= N; ++i) {
+		for (int j = 1; j <= M; ++j) {
+			if (!temp[graph[i][j]]) {
+				if (isok(i, j, TOL)) temp[graph[i][j]] = 1;
+				else temp[graph[i][j]] = 2;
+			}
+			else temp[graph[i][j]] = 2;
+		}
+	}
+
+	int cnt = 0;
+	int ii, jj;
+	for (int i = 1; i <= N; ++i) {
+		for (int j = 1; j <= M; ++j) {
+			if (temp[graph[i][j]] == 1) cnt++, ii = i, jj = j;
+		}
+	}
+	if (cnt == 1) {
+		printf("(%d, %d): %d\n", jj, ii, graph[ii][jj]);
+	}
+	else if (cnt == 0) printf("Not Exist\n");
+	else printf("Not Unique\n");
 	return 0;
 }

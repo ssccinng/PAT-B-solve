@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char * argv[]) { 
+	char temp[32] = {0};
+	int T;
+	scanf("%s %d", temp, &T);
+	getchar();
+	char pat[50] = {0};
+	while (T--) {
+		gets(pat);
+		if (pat[1] == 0 && pat[0] == '#') {
+			break;
+		}
+		else {
+			if (!strcmp(temp, pat)) {
+				printf("Welcome in\n");
+				return 0;
+			}
+			else {
+				printf("Wrong password: %s\n", pat);
+			}
+		}
+	}
+	if (T == -1) printf("Account locked\n");
+	return 0;
+}

@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main(int argc, char * argv[]) {
+	int N, M, L, R, T;
+	scanf("%d %d %d %d %d", &N, &M, &L, &R, &T);
+	int ans;
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < M; ++j) {
+			scanf("%d", &ans);
+			if (ans <= R && L <= ans) {
+				printf("%03d%c", T, j == M - 1 ? '\n' : ' ');
+			}
+			else {
+				printf("%03d%c", ans, j == M - 1 ? '\n' : ' ');
+			}
+		}
+	}
+	return 0;
+}

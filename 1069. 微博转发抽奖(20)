@@ -1,0 +1,21 @@
+inn = input()
+li = inn.split(' ')
+M = int(li[0])
+N = int(li[1])
+S = int(li[2])
+
+ans = []
+temp = ['',]
+if S > M:
+    print ("Keep going...")
+else:
+    for i in range(1, M + 1):
+        a = input()
+        if a in ans:
+            S += 1
+        if a not in ans and i == S:
+            ans.append(a)
+            S += N
+            
+    for j in ans:
+        print (j)
